@@ -10,7 +10,9 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/css");
 
    return {
-    pathPrefix: "/src/",
+    dir: {
+        input: "src",
+    },
     // možné formáty šablon
     templateFormats: ["njk", "html", "md"],
     // jako šablonovací jazyk zvolíme Nunjucks`
