@@ -1,4 +1,4 @@
-export default function(eleventyConfig) {
+module.exports = function(eleventyConfig) {
     
     eleventyConfig.setServerOptions({
         showAllHosts: true,
@@ -7,9 +7,10 @@ export default function(eleventyConfig) {
     // Zkopírovat images/ do _site/images
     //eleventyConfig.addPassthroughCopy("images");
     // Zkopírovat css/ to _site/css/
-    eleventyConfig.addPassthroughCopy("css");
+    eleventyConfig.addPassthroughCopy("src/css");
 
    return {
+    pathPrefix: "/src/",
     // možné formáty šablon
     templateFormats: ["njk", "html", "md"],
     // jako šablonovací jazyk zvolíme Nunjucks`
