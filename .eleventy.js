@@ -12,6 +12,7 @@ module.exports = function(eleventyConfig) {
    return {
     dir: {
         input: "src",
+        output: "build"
     },
     // možné formáty šablon
     templateFormats: ["njk", "html", "md"],
