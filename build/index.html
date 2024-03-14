@@ -12,25 +12,62 @@
     <!--Layout Content-->
     
 <h1>My To-Do List</h1>
+
+<div class="task-list" id="task-list">
+
+</div>
     
     <!--New Task Button-->
     <button type="button" class="btn btn-create" id="btn-create">New task</button>
 
     <!--Modal-->
-    <!-- <dialog class="modal" id="modal"> -->
-<div>
-    <label for=""></label>
-    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <dialog class="modal" id="modal">
+    <a href="#" class="modal__close" id="modal__close">X</a>
+
+    <div class="task__wrapper">
+    <label for="task__description"></label>
+    <textarea name="task__description" id="task__description" cols="30" rows="10"></textarea>
 
     <!-- New Task Button -->
     <button type="button" class="btn btn-save" id="btn-save">Save</button>
+    </div>
 
-</div>
-<!-- </dialog> -->
+</dialog>
 
     <!--JavaScript-->
     <script>
-        console.log("aaa");
+        //Class for the invidual tasks
+class Task {
+    constructor (argDescription) {
+        this.description = argDescription;
+    }
+};
+
+//Modal input
+const taskDescription = document.querySelector("#task__description");
+//console.log(taskDescription);
+
+//Create div on save
+const saveTask = document.querySelector("#btn-save");
+saveTask.addEventListener("click", () => {
+    console.log(taskDescription.value);
+    const task1 = new Task(taskDescription.value);
+    console.log(task1);
+})
+    </script>
+    
+    <script>
+        const modal = document.querySelector("#modal");
+const openModal = document.querySelector("#btn-create");
+const closeModal = document.querySelector("#modal__close");
+
+openModal.addEventListener("click", () => {
+    modal.showModal();
+});
+
+closeModal.addEventListener("click", () => {
+    modal.close();
+});
     </script>
 
 </body>

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx 11ty/eleventy",
     "serve": "npx 11ty/eleventy --serve",
+    "watch-11ty": "npx 11ty/eleventy --watch",
     "watch-sass": "sass --watch src/scss/styles.scss src/css/styles.css"
 
   },
