@@ -4,10 +4,12 @@ module.exports = function(eleventyConfig) {
         showAllHosts: true,
     });
     // Výchozí výstupní složka je: _site
-    // Zkopírovat images/ do _site/images
+    // Zkopírovat images/ do build/images
     //eleventyConfig.addPassthroughCopy("images");
-    // Zkopírovat css/ to _site/css/
+    // Zkopírovat css/ to build/css/
     eleventyConfig.addPassthroughCopy("src/css");
+    //Zkopírovat .js do build/js
+    eleventyConfig.addPassthroughCopy("src/js");
 
    return {
     dir: {

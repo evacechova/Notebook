@@ -9,8 +9,19 @@
 </head>
 <body>
     
-    <!--layout content for the layout using this layout-->
+    <!--Layout Content-->
     {{ content | safe }}
+    
+    <!--New Task Button-->
+    {% include 'partials/btn-create.njk' %}
+
+    <!--Modal-->
+    {% include 'partials/modal.njk' %}
+
+    <!--JavaScript-->
+    <script>
+        {% include "src/js/main.js" %}
+    </script>
 
 </body>
 </html>

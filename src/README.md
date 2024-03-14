@@ -1,1 +1,1 @@
-# Notebook
+# A Simple JS Notebook App for creating a TO-DO List
