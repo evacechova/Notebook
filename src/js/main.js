@@ -1,20 +1,25 @@
-//Loading previously saved data from LocalStorage
+//LOADING DATA FROM LOCAL STORAGE
+//1 Loading keys
+
+//2 Loading saved tasks 
 let savedTasksKeysArray = [];
+console.log(savedTasksKeysArray);
 
-let savedTask = localStorage.getItem(`Task-data${savedTasksKeysArray[i]}`);
+// let savedTask = localStorage.getItem(`Task-data${savedTasksKeysArray[0]}`);
+// console.log(savedTask);
 
-//Class set up for the invidual tasks
+//CLASS SETUP FOR TASKS
 class Task {
     constructor (argDescription) {
         this.description = argDescription;
     }
 };
 
-//Modal input selection
+//MODAL INPUT SELECTION
 const taskDescription = document.querySelector("#task__description");
 //console.log(taskDescription);
 
-//Create div on save
+//CREATE DIV UPON CLICKING ON SAVE
 const saveTask = document.querySelector("#btn-save");
 saveTask.addEventListener("click", () => {
     //console.log(taskDescription.value);
@@ -23,15 +28,19 @@ saveTask.addEventListener("click", () => {
     //console.log(newTask);
     //1.11 Convert instance to string before saving to LocalStorage
     let newTaskString = JSON.stringify(newTask);
-    console.log(newTaskString);
-    //1.12 Generate a dynamic key number for my string and save it to my key array
+    //console.log(newTaskString);
+    //1.12 Generate a dynamic key number for my string
     function generateKey() {
         return Date.now().toString();
     }
     let keyNumber = generateKey();
+    //console.log(keyNumber);
+    //1.13 Save the newly generated key to my key array
     savedTasksKeysArray.push(keyNumber);
     //console.log(savedTasksKeysArray);
-    //console.log(keyNumber);
-    //1.13 Save to LocalStorage
+    let keyArrayString = JSON.stringify(savedTasksKeysArray);
+    //console.log(keyArrayString);
+    localStorage.setItem(`Task-key-array`, keyArrayString);
+    //1.14 Save task to LocalStorage
     localStorage.setItem(`Task-data${keyNumber}`, newTaskString);
 });
