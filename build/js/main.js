@@ -14,7 +14,7 @@ console.log(savedTasksString);
         savedTasksString.push(localStorage.getItem(`Task-data${savedTasksKeysArray[i]}`));
         //console.log(savedTasksString);
     }
-    
+
 //3 Converting task strings back to objects
 let savedTasksObjects = savedTasksString.map((e) => JSON.parse(e));
 console.log(savedTasksObjects);
@@ -91,4 +91,9 @@ saveTask.addEventListener("click", () => {
     localStorage.setItem(`Task-data${keyNumber}`, newTaskString);
     //1.15 Call the div creating function
     createDiv(newTask.description);
+    //1.16 Close modal by clicking on Save
+    const modal = document.querySelector("#modal");
+    saveTask.addEventListener("click", () => {
+    modal.close();
+    });
 });
