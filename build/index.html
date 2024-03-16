@@ -46,13 +46,46 @@ console.log(savedTasksKeysArray);
 let savedTasksString = [];
 console.log(savedTasksString);
 
-for (i = 0; i < savedTasksKeysArray.length; i++){
+for (let i = 0; i < savedTasksKeysArray.length; i++){
     savedTasksString.push(localStorage.getItem(`Task-data${savedTasksKeysArray[i]}`));
     //console.log(savedTasksString);
 }
 //3 Converting task strings back to objects
 let savedTasksObjects = savedTasksString.map((e) => JSON.parse(e));
 console.log(savedTasksObjects);
+
+//CREATING DIVS FROM LOCALSTORAGE DATA
+//select task-list
+const taskListDiv = document.querySelector(".task-list");
+//function for creating new divs
+function createDiv() {
+    //task wrapper div
+    const taskListItem = document.createElement("div");
+    taskListItem.classList.add("task-list__item");
+    //wrapper div contents
+        //1 checkbox
+        const itemCheckbox = document.createElement("input");
+        itemCheckbox.appendChild(taskListItem);
+        itemCheckbox.classList.add("task-list__checkbox");
+        itemCheckbox.type = "checkbox";
+        //2 description
+        const itemDescription = document.createElement("p");
+        itemDescription.appendChild(taskListItem);
+        itemDescription.classList.add("task-list__description");
+        //itemDescription.textContent = savedTasksObjects[3].description;
+        //3 delete button
+        const itemDelete = document.createElement("button");
+        itemDelete.appendChild(taskListItem);
+        itemDelete.classList.add("task-list__delete");
+        itemDelete.type = "button";
+        itemDelete.textContent = "X";
+
+        taskListDiv.appendChild(itemCheckbox);
+        taskListDiv.appendChild(itemDescription);
+        taskListDiv.appendChild(itemDelete);
+};
+//savedTasksObjects.forEach((task) => );
+
 
 //CLASS SETUP FOR TASKS
 class Task {
@@ -89,6 +122,9 @@ saveTask.addEventListener("click", () => {
     localStorage.setItem(`Task-key-array`, keyArrayString);
     //1.14 Save task to LocalStorage
     localStorage.setItem(`Task-data${keyNumber}`, newTaskString);
+
+    createDiv();
+
 });
     </script>
     
