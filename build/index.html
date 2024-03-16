@@ -36,15 +36,23 @@
 
     <!--JavaScript-->
     <script>
-        //LOADING DATA FROM LOCAL STORAGE
+        //RETRIEVING DATA FROM LOCAL STORAGE
 //1 Loading keys
+let savedTasksKeysArray = JSON.parse(localStorage.getItem(`Task-key-array`));
 
-//2 Loading saved tasks 
-let savedTasksKeysArray = [];
 console.log(savedTasksKeysArray);
 
-// let savedTask = localStorage.getItem(`Task-data${savedTasksKeysArray[0]}`);
-// console.log(savedTask);
+//2 Creating a saved tasks array and loading data from LocalStorage into it 
+let savedTasksString = [];
+console.log(savedTasksString);
+
+for (i = 0; i < savedTasksKeysArray.length; i++){
+    savedTasksString.push(localStorage.getItem(`Task-data${savedTasksKeysArray[i]}`));
+    //console.log(savedTasksString);
+}
+//3 Converting task strings back to objects
+let savedTasksObjects = savedTasksString.map((e) => JSON.parse(e));
+console.log(savedTasksObjects);
 
 //CLASS SETUP FOR TASKS
 class Task {
