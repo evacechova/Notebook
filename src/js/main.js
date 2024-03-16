@@ -1,17 +1,20 @@
 //RETRIEVING DATA FROM LOCAL STORAGE
-//1 Loading keys
-let savedTasksKeysArray = JSON.parse(localStorage.getItem(`Task-key-array`));
+//1 Loading keys if there are any, otherwise creating anempty array
+let savedTasksKeysArray = [];
 
+if (localStorage.key(`Task-key-array` != null)) {
+    savedTasksKeysArray = JSON.parse(localStorage.getItem(`Task-key-array`));
+}
 console.log(savedTasksKeysArray);
 
 //2 Creating a saved tasks array and loading data from LocalStorage into it 
 let savedTasksString = [];
 console.log(savedTasksString);
-
-for (let i = 0; i < savedTasksKeysArray.length; i++){
-    savedTasksString.push(localStorage.getItem(`Task-data${savedTasksKeysArray[i]}`));
-    //console.log(savedTasksString);
-}
+    for (let i = 0; i < savedTasksKeysArray.length; i++){
+        savedTasksString.push(localStorage.getItem(`Task-data${savedTasksKeysArray[i]}`));
+        //console.log(savedTasksString);
+    }
+    
 //3 Converting task strings back to objects
 let savedTasksObjects = savedTasksString.map((e) => JSON.parse(e));
 console.log(savedTasksObjects);
@@ -19,8 +22,8 @@ console.log(savedTasksObjects);
 //CREATING DIVS FROM LOCALSTORAGE DATA
 //select task-list
 const taskListDiv = document.querySelector(".task-list");
-//function for creating new divs
-function createDiv() {
+//1 function for creating new divs
+function createDiv(argTaskDescription) {
     //task wrapper div
     const taskListItem = document.createElement("div");
     taskListItem.classList.add("task-list__item");
@@ -34,7 +37,7 @@ function createDiv() {
         const itemDescription = document.createElement("p");
         itemDescription.appendChild(taskListItem);
         itemDescription.classList.add("task-list__description");
-        //itemDescription.textContent = savedTasksObjects[3].description;
+        itemDescription.textContent = argTaskDescription;
         //3 delete button
         const itemDelete = document.createElement("button");
         itemDelete.appendChild(taskListItem);
@@ -46,8 +49,10 @@ function createDiv() {
         taskListDiv.appendChild(itemDescription);
         taskListDiv.appendChild(itemDelete);
 };
-//savedTasksObjects.forEach((task) => );
-
+//Generating the divs
+savedTasksObjects.forEach((argTask) => {
+    createDiv(argTask.description);
+});
 
 //CLASS SETUP FOR TASKS
 class Task {
@@ -66,7 +71,7 @@ saveTask.addEventListener("click", () => {
     //console.log(taskDescription.value);
     //1 Create new instance of Task
     const newTask = new Task(taskDescription.value);
-    //console.log(newTask);
+    console.log(newTask.description);
     //1.11 Convert instance to string before saving to LocalStorage
     let newTaskString = JSON.stringify(newTask);
     //console.log(newTaskString);
@@ -84,7 +89,6 @@ saveTask.addEventListener("click", () => {
     localStorage.setItem(`Task-key-array`, keyArrayString);
     //1.14 Save task to LocalStorage
     localStorage.setItem(`Task-data${keyNumber}`, newTaskString);
-
-    createDiv();
-
+    //1.15 Call the div creating function
+    createDiv(newTask.description);
 });
